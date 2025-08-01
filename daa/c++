@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+const int SIZE = 5;
+
+class Stack {
+    int arr[SIZE];
+    int top = -1;  
+
+public:
+    bool isEmpty() const {           
+        return top == -1;
+    }
+
+    bool isFull() const {            
+        return top == SIZE - 1;
+    }
+
+    void push(int val) {
+        if (isFull()) {              
+            cout << "Overflow!\n";
+            return;
+        }
+        arr[++top] = val;            
+        cout << "Pushed " << val << "\n";
+    }
+
+    int pop() {
+        if (isEmpty()) {             
+            cout << "Underflow!\n";
+            return -1;
+        }
+        cout << "Popped " << arr[top] << "\n";
+        return arr[top--];           
+    }
+
+    void display() const {
+        if (isEmpty()) {
+            cout << "Stack is empty.\n";
+            return;
+        }
+        cout << "Stack: ";
+        for (int i = top; i >= 0; --i)
+            cout << arr[i] << " ";
+        cout << "\n";
+    }
+};
+
+int main() {
+    Stack s;
+    s.pop();          
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+    s.push(6);
+    s.display();
+    s.pop();
+    s.display();
+    return 0;
+}
